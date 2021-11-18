@@ -1,7 +1,5 @@
 class Ship {
-  shipID = 0;
-
-  constructor( length) {
+  constructor(length, shipId) {
     // might be a prolem with ship id make it private
     this.shipId = shipId;
     this.length = length;
@@ -14,7 +12,7 @@ class Ship {
     this.hits.push(number);
   }
 
-  isSunk() {
+  checkSunkState() {
     if (this.length === this.hits.length) {
       this.isSunk = true;
     }
