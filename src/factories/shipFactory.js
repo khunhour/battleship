@@ -11,7 +11,7 @@ class Ship {
   }
 
   hit(number) {
-    Ship.hits.push(number);
+    this.hits.push(number);
   }
 
   isSunk() {
