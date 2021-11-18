@@ -1,8 +1,13 @@
 class Ship {
-  constructor(length) {
+  shipID = 0;
+
+  constructor( length) {
+    // might be a prolem with ship id make it private
+    this.shipId = shipId;
     this.length = length;
     this.hits = [];
     this.isSunk = false;
+    this.shipID++;
   }
 
   hit(number) {
@@ -10,10 +15,9 @@ class Ship {
   }
 
   isSunk() {
-    if (Ship.length === Ship.hits.length) {
-      Ship.isSunk = true;
+    if (this.length === this.hits.length) {
+      this.isSunk = true;
     }
   }
 }
-
 module.exports = Ship;
