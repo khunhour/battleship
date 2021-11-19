@@ -40,9 +40,10 @@ class Gameboard {
   recieveAttack(coord) {
     const row = coord[0];
     const col = coord[1];
+    if (!this.board[row][col].isShot) return;
+
     // record missed shot as isShot
     this.board[row][col].isShot = true;
-
     if (this.checkHasShip(row, col)) {
       const attackedShip = this.getAttackedShip(row, col);
       attackedShip.hit(coord);
