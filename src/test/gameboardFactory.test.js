@@ -7,7 +7,6 @@ beforeEach(() => {
 });
 
 test('initial board', () => {
-  console.log(gameboard.board);
   expect(gameboard.allShips).toStrictEqual([]);
   expect(gameboard.board.length).toBe(10);
   expect(gameboard.board[0].length).toBe(10);
@@ -30,7 +29,6 @@ test('placing ships vertically', () => {
 
 test('placing ships horizontally', () => {
   gameboard.placeShip(5, [3, 2], 'horizontal');
-  console.log(gameboard.board);
   for (let i = 2; i < 7; i++) {
     expect(gameboard.board[3][i].hasShip).not.toBe('');
   }
@@ -43,7 +41,21 @@ test('if placement is not valid then nth will happen', () => {
   gameboard.placeShip(5, [8, 4], 'horizontal');
   expect(gameboard.board[8][4].hasShip).toBe('');
 });
+// check valid attack not on the same coord
+test('recieved attack and record shot', () => {
+  gameboard.recieveAttack([1, 8]);
+  expect(gameboard.board[1][8].isShot).toBe(true);
+});
 
-// test('recieve attak', () => {
-//   gameboard.recieveAttack();
-// });
+test('recieved attack where the ship is', () => {
+  gameboard.placeShip(2, [3, 3], 'horizontal');
+  gameboard.recieveAttack([3, 3]);
+  expect(gameboard.allShips[0].hits.length).not.toBe(0);
+});
+
+test('recieved attack and ship is sunk', () => {
+  gameboard.placeShip(2, [3, 3], 'horizontal');
+  gameboard.recieveAttack([3, 3]);
+  gameboard.recieveAttack([3, 4]);
+  expect(gameboard.allShips[0].isSunk).toBe(true);
+});

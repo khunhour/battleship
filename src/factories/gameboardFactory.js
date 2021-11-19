@@ -44,7 +44,7 @@ class Gameboard {
     this.board[row][col].isShot = true;
 
     if (this.checkHasShip(row, col)) {
-      const attackedShip = this.getAttackedShip();
+      const attackedShip = this.getAttackedShip(row, col);
       attackedShip.hit(coord);
       attackedShip.checkSunkState();
     }
@@ -77,7 +77,7 @@ class Gameboard {
 
   getAttackedShip(row, col) {
     const attackedShipId = Number(this.board[row][col].hasShip);
-    return this.Ship[attackedShipId];
+    return this.allShips[attackedShipId];
   }
 
   checkAllShipsAreSunk() {
