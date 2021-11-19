@@ -2,12 +2,13 @@ const Ship = require('./shipFactory');
 
 class Gameboard {
   constructor() {
-    this.board = [];
+    this.board = this.createGrid();
     this.allShips = [];
     this.createGrid();
   }
 
   createGrid() {
+    this.board = [];
     for (let row = 0; row < 10; row++) {
       this.board[row] = [];
       for (let col = 0; col < 10; col++) {
@@ -20,15 +21,14 @@ class Gameboard {
   }
 
   placeShip(length, coord, direction) {
+    if (!this.checkShipPlacementValidity(length, coord, direction)) return;
     const shipId = this.getShipId();
     const battleship = new Ship(length, shipId);
     this.allShips.push(battleship);
     let row = coord[0];
     let col = coord[1];
-    if (!this.checkShipPlacementValidity(length, coord, direction)) return;
-
     for (let i = 0; i < length; i++) {
-      this.board[row][col].hasShip = battleship.shipId;
+      this.board[row][col].hasShip = shipId;
       if (direction === 'vertical') {
         row++;
       } else {
@@ -37,13 +37,15 @@ class Gameboard {
     }
   }
 
-  recieveAttack(location) {
+  recieveAttack(coord) {
+    const row = coord[0];
+    const col = coord[1];
     // record missed shot as isShot
-    this.board[location].isShot = true;
+    this.board[row][col].isShot = true;
 
-    if (this.checkHasShip(location)) {
-      const attackedShip = this.getAttackedShip(location);
-      attackedShip.hit(location);
+    if (this.checkHasShip(row, col)) {
+      const attackedShip = this.getAttackedShip();
+      attackedShip.hit(coord);
       attackedShip.checkSunkState();
     }
   }
@@ -69,12 +71,12 @@ class Gameboard {
     return this.allShips.length;
   }
 
-  checkHasShip(location) {
-    return this.board[location].hasShip !== '';
+  checkHasShip(row, col) {
+    return this.board[row][col].hasShip !== '';
   }
 
-  getAttackedShip(location) {
-    const attackedShipId = Number(this.board[location].hasShip);
+  getAttackedShip(row, col) {
+    const attackedShipId = Number(this.board[row][col].hasShip);
     return this.Ship[attackedShipId];
   }
 

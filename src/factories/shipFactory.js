@@ -5,11 +5,10 @@ class Ship {
     this.length = length;
     this.hits = [];
     this.isSunk = false;
-    this.shipID++;
   }
 
-  hit(number) {
-    this.hits.push(number);
+  hit(coord) {
+    this.hits.push(coord);
   }
 
   checkSunkState() {
