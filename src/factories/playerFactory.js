@@ -7,9 +7,17 @@ class Player {
     this.moves = [];
   }
 
+  attack(enemy, coord) {
+    enemy.gameboard.recieveAttack(coord);
+  }
+
   getRandomCoord() {
     let randomNum = `0${Math.floor(Math.random() * 100)}`;
     randomNum = randomNum.slice(-2);
+    if (this.moves.includes(randomNum)) {
+      return this.getRandomCoord();
+    }
+    this.moves.push(randomNum);
     const coord = randomNum.split('').map(Number);
     return coord;
   }
