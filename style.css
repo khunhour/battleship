@@ -1,0 +1,21 @@
+.board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+#player-grid,
+#computer-grid {
+  display: grid;
+  grid-template-rows: repeat(10, 30px);
+  grid-template-columns: repeat(10, 30px);
+  box-sizing: border-box;
+}
+
+.tile {
+  background-color: white;
+  border: solid 1.5px rgb(22, 159, 223);
+  margin-left: -1.5px;
+  margin-top: -1.5px;
+}
