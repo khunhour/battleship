@@ -1,8 +1,29 @@
+:root {
+  font-size: 18px;
+  /* font-family: 'Roboto', sans-serif;
+  font-family: 'Special Elite', cursive; */
+}
+
+header {
+  font-family: 'Special Elite', cursive;
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
 .board {
   display: flex;
+  justify-content: space-around;
+}
+
+.player-side,
+.computer-side {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px;
 }
 
 #player-grid,
@@ -18,4 +39,5 @@
   border: solid 1.5px rgb(22, 159, 223);
   margin-left: -1.5px;
   margin-top: -1.5px;
+  height: 30px;
 }
