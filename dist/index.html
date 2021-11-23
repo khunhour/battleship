@@ -6,14 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BattleShip</title>
     <script defer src="main.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Special+Elite&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <header>Battleship</header>
     <main>
       <div class="board">
-        <div id="player-grid"></div>
-        <div id="computer-grid"></div>
+        <div class="player-side">
+          <div id="player-grid"></div>
+          <div class="grid-name">Your Board</div>
+        </div>
+        <div class="computer-side">
+          <div id="computer-grid"></div>
+          <div class="grid-name">Computer's Board</div>
+        </div>
       </div>
     </main>
     <footer></footer>

@@ -1,7 +1,6 @@
 const Event = (() => {
-  const playgame = () => {
-    const t = 1;
-    return t;
+  const playgame = (e) => {
+    console.log(e.target);
   };
   const startTileEvent = () => {
     const computerTiles = document.querySelectorAll('#computer-grid .tile');
