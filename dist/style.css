@@ -1,7 +1,7 @@
 :root {
   font-size: 18px;
-  /* font-family: 'Roboto', sans-serif;
-  font-family: 'Special Elite', cursive; */
+  font-family: 'Special Elite', cursive;
+  font-family: 'Roboto', sans-serif;
 }
 
 header {
@@ -11,6 +11,15 @@ header {
   text-align: center;
   padding: 1rem;
   margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header div {
+  padding-top: 10px;
+}
+header img {
+  height: 2.3rem;
 }
 
 .board {
@@ -39,5 +48,28 @@ header {
   border: solid 1.5px rgb(22, 159, 223);
   margin-left: -1.5px;
   margin-top: -1.5px;
-  height: 30px;
+
+  background-image: url('./images/miss-mark.png');
+  background-size: cover;
+  background-color: rgba(253, 253, 112, 0.329);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-origin: content-box;
+  padding: 8px;
+}
+
+.red-mark {
+  border-bottom: red;
+  background-image: url('./images/red-mark.png');
+  background-size: cover;
+}
+
+.missed-mark {
+  background-image: url('./images/miss-mark.png');
+  background-size: cover;
+  background-color: rgba(253, 253, 112, 0.329);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-origin: content-box;
+  padding: 8px;
 }

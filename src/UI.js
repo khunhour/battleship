@@ -5,18 +5,40 @@ const UI = (() => {
     );
     tile.classList.add('red-mark');
   };
+  const displayMissedShot = (row, col) => {
+    const tile = document.querySelector(
+      `[data-row="${row}"][data-col="${col}"]`
+    );
+    tile.classList.add('missed-mark');
+  };
+  const displayPlayerShips = (row, col) => {
+    const tile = document.querySelector(
+      `[data-row="${row}"][data-col="${col}"]`
+    );
+    tile.classList.add('ship-mark');
+  };
 
-  const render = (board) => {
+  const render = (player) => {
     // render when a ship is shot or missed shot
     for (let i = 0; i < 10; i++) {
       for (let j = 0; j < 10; j++) {
-        if (board[i][j].isShot && board[i][j].hasShip !== '') {
+        if (player.board[i][j].isShot && player.board[i][j].hasShip !== '') {
           displayRedMark(i, j);
+        } else if (
+          player.board[i][j].isShot &&
+          player.board[i][j].hasShip === ''
+        ) {
+          displayMissedShot(i, j);
+        }
+
+        // if player's board then display where ship is, if computer then is it hidden
+        if (player.name === 'player') {
+          if (player.board[i][j].hasShip !== '') {
+            displayPlayerShips(i, j);
+          }
         }
       }
     }
-
-    // if player's board then display where ship is, if computer then is it hidden
   };
 
   const createBoard = () => {

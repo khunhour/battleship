@@ -8,4 +8,6 @@ const Game = (() => {
   const startGame = () => {
     // sth
   };
+
+  return { startGame };
 })();
