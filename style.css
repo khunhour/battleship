@@ -27,7 +27,7 @@ header img {
   justify-content: space-around;
 }
 
-.player-side,
+.human-side,
 .computer-side {
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@ header img {
   align-items: center;
 }
 
-#player-grid,
+#human-grid,
 #computer-grid {
   display: grid;
   grid-template-rows: repeat(10, 30px);
@@ -48,19 +48,11 @@ header img {
   border: solid 1.5px rgb(22, 159, 223);
   margin-left: -1.5px;
   margin-top: -1.5px;
-
-  background-image: url('./images/miss-mark.png');
-  background-size: cover;
-  background-color: rgba(253, 253, 112, 0.329);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-origin: content-box;
-  padding: 8px;
 }
 
 .red-mark {
-  border-bottom: red;
   background-image: url('./images/red-mark.png');
+  background-color: rgba(243, 152, 92, 0.507) !important;
   background-size: cover;
 }
 
@@ -72,4 +64,8 @@ header img {
   background-position: center;
   background-origin: content-box;
   padding: 8px;
+}
+
+.ship-mark {
+  background-color: rgb(115, 223, 250);
 }
