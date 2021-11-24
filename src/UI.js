@@ -12,6 +12,7 @@ const UI = (() => {
       tile.classList.add('red-mark');
     }
   };
+
   const displayMissedShot = (player, row, col) => {
     if (player.name === 'computer') {
       const tile = document.querySelector(
@@ -25,6 +26,7 @@ const UI = (() => {
       tile.classList.add('missed-mark');
     }
   };
+
   const displayPlayerShips = (player, row, col) => {
     if (player.name === 'computer') {
       const tile = document.querySelector(

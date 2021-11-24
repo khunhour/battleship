@@ -23,12 +23,12 @@ const Game = (() => {
     UI.render(computer);
   };
 
-  const startAttack = (row, col) => {
+  const startAttackRound = (row, col) => {
     human.attack(computer, [row, col]);
     UI.render(computer, row, col);
   };
 
-  return { startGame, startAttack };
+  return { startGame, startAttackRound };
 })();
 
 export default Game;

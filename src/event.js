@@ -13,9 +13,7 @@ const Event = (() => {
         playgame(e);
         const row = Number(e.target.dataset.row);
         const col = Number(e.target.dataset.col);
-        console.log(row);
-        console.log(col);
-        Game.startAttack(row, col);
+        Game.startAttackRound(row, col);
       });
     });
   };
