@@ -8,6 +8,8 @@ class Player {
   }
 
   attack(enemy, coord) {
+    console.log('attak pplayer');
+    console.log(coord);
     enemy.gameboard.recieveAttack(coord);
   }
 
