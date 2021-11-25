@@ -4,6 +4,7 @@
   font-family: 'Roboto', sans-serif;
 }
 
+
 header {
   font-family: 'Special Elite', cursive;
   font-size: 2rem;
@@ -21,10 +22,23 @@ header div {
 header img {
   height: 2.3rem;
 }
+main{
+  display: flex;
+  flex-direction: column;
+}
+.announcement{
+  align-self: center;
+  text-align: center;
+  padding:18px;
+  background-color: #e4e4e4;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  min-width: 500px !important;
+}
 
 .board {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-around !important ;
 }
 
 .human-side,
@@ -33,23 +47,27 @@ header img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: solid black 2px;
 }
 
 #human-grid,
 #computer-grid {
   display: grid;
-  grid-template-rows: repeat(10, 30px);
-  grid-template-columns: repeat(10, 30px);
+  grid-template-rows: repeat(10, 32px);
+  grid-template-columns: repeat(10, 32px);
   box-sizing: border-box;
 }
 
 .tile {
   background-color: white;
-  border: solid 1.5px rgb(22, 159, 223);
+  border: solid 1.5px rgb(115, 160, 175);
   margin-left: -1.5px;
   margin-top: -1.5px;
 }
 
+.tile:hover{
+  cursor: pointer;
+}
 .red-mark {
   background-image: url('./images/red-mark.png');
   background-color: rgba(243, 152, 92, 0.507) !important;
@@ -67,5 +85,12 @@ header img {
 }
 
 .ship-mark {
-  background-color: rgb(115, 223, 250);
+  background-color: lightblue;
+}
+
+#start{
+  background-color:#e4e4e4 ;
+  border: none;
+  padding:0.4rem 0.8rem;
+  border-radius: 5px;
 }
