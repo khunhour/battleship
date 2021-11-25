@@ -7,10 +7,9 @@ class Player {
     this.moves = [];
   }
 
-  attack(enemy, coord) {
+  attack(enemy, row, col) {
     console.log('attak pplayer');
-    console.log(coord);
-    enemy.gameboard.recieveAttack(coord);
+    enemy.gameboard.recieveAttack(row , col);
   }
 
   getRandomCoord() {

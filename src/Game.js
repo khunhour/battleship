@@ -8,14 +8,15 @@ const Game = (() => {
   const computer = new Player('computer');
 
   const placingShip = (player) => {
-    player.gameboard.placeShip(5, [0, 0], 'horizontal');
+    player.gameboard.placeShip(5,0, 0, 'horizontal');
     // sth wrong with placeship validation
-    player.gameboard.placeShip(4, [3, 1], 'vertical');
-    player.gameboard.placeShip(2, [8, 1], 'horizontal');
+    player.gameboard.placeShip(4,3, 1, 'vertical');
+    player.gameboard.placeShip(2,8, 1, 'horizontal');
 
-    player.gameboard.placeShip(2, [8, 8], 'vertical');
-    player.gameboard.placeShip(2, [2, 9], 'vertical');
+    player.gameboard.placeShip(2,8, 8, 'vertical');
+    player.gameboard.placeShip(2,2, 9, 'vertical');
   };
+  
   const startGame = () => {
     placingShip(human);
     placingShip(computer);
@@ -24,7 +25,7 @@ const Game = (() => {
   };
 
   const startAttackRound = (row, col) => {
-    human.attack(computer, [row, col]);
+    human.attack(computer, row, col);
     UI.render(computer, row, col);
   };
 

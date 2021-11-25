@@ -20,13 +20,11 @@ class Gameboard {
     }
   }
 
-  placeShip(length, coord, direction) {
-    if (!this.checkShipPlacementValidity(length, coord, direction)) return;
+  placeShip(length, row,col, direction) {
+    if (!this.checkShipPlacementValidity(length, row, col, direction)) return;
     const shipId = this.getShipId();
     const battleship = new Ship(length, shipId);
     this.allShips.push(battleship);
-    let row = coord[0];
-    let col = coord[1];
     for (let i = 0; i < length; i++) {
       this.board[row][col].hasShip = shipId;
       if (direction === 'vertical') {
@@ -37,10 +35,8 @@ class Gameboard {
     }
   }
 
-  recieveAttack(coord) {
+  recieveAttack(row,col) {
     console.log('receiveAttack');
-    const row = coord[0];
-    const col = coord[1];
     // console.log(this.board[row][col].isShot);
     if (this.board[row][col].isShot) return;
 
@@ -50,25 +46,22 @@ class Gameboard {
 
     if (this.checkHasShip(row, col)) {
       const attackedShip = this.getAttackedShip(row, col);
-      attackedShip.hit(coord);
+      attackedShip.hit([row,col]);
       attackedShip.checkSunkState();
     }
   }
 
-  checkShipPlacementValidity(length, coord, direction) {
-    const row = coord[0];
-    const col = coord[1];
-    if (direction === 'vertical') {
-      if (col > 10 - length) {
+  checkShipPlacementValidity(length, row,col, direction) {
+    for(i=0;i<length;i++){
+      if(this.board[row][col].hasShip !== ""){
         return false;
       }
-      return true;
+      if (direction === 'vertical') {
+        row++;
+      }else if(direction === 'horizontal'){
+        col++;
+      }
     }
-    // horizontal
-    if (row > 10 - length) {
-      return false;
-    }
-    return true;
   }
 
   getShipId() {
