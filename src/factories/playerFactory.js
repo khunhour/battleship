@@ -13,13 +13,14 @@ class Player {
   }
 
   getRandomCoord() {
-    let randomNum = `0${Math.floor(Math.random() * 100)}`;
-    randomNum = randomNum.slice(-2);
+    let randomNum = Math.floor(Math.random() * 100);
+    this.moves.push(randomNum);
+    let randomNumString = `0${randomNum}`;
+    randomNumString = randomNumString.slice(-2);
     if (this.moves.includes(randomNum)) {
       return this.getRandomCoord();
     }
-    this.moves.push(randomNum);
-    const coord = randomNum.split('').map(Number);
+    const coord = randomNumString.split('').map(Number);
     return coord;
   }
 }

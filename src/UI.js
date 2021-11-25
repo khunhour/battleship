@@ -87,7 +87,15 @@ const UI = (() => {
     }
   };
 
-  return { createBoard, render };
+  const declareWinner = (player) =>{
+    const announcement = document.querySelector(".announcement");
+    if(player.name = "computer"){
+      announcement.textContent = "You Lose!";
+    }else{
+      announcement.textContent = "You Won!"
+    }
+  }
+  return { createBoard, render , declareWinner};
 })();
 
 export default UI;

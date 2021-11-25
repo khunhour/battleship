@@ -25,10 +25,32 @@ const Game = (() => {
   };
 
   const startAttackRound = (row, col) => {
+    // human's turn to attack
     human.attack(computer, row, col);
-    UI.render(computer, row, col);
+    UI.render(computer);
+    checkWinner(human, computer);
+
+    // computer's turn to attack
+    let coord = computer.getRandomCoord();
+    computer.attack(human, coord[0], coord[1]);
+    UI.render(human);
+    checkWinner(computer, human);
   };
 
+  const checkWinner = (player, enemy) =>{
+    if(checkAllShipsSunk(enemy)){
+      UI.declareWinner(player);
+    }
+  }
+
+  const checkAllShipsSunk = (player) =>{
+    for(let i=0; i<player.gameboard.allShips.length; i++){
+      if(!player.gameboard.allShips[i].isSunk){
+        return false;
+      }
+    }
+    return true;
+  }
   return { startGame, startAttackRound };
 })();
 

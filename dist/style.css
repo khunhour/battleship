@@ -60,7 +60,7 @@ main{
 
 .tile {
   background-color: white;
-  border: solid 1.5px rgb(115, 160, 175);
+  border: solid 1.5px rgb(48, 178, 221);
   margin-left: -1.5px;
   margin-top: -1.5px;
 }
@@ -93,4 +93,8 @@ main{
   border: none;
   padding:0.4rem 0.8rem;
   border-radius: 5px;
+}
+
+.winner{
+  position: absolute;
 }
