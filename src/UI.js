@@ -42,8 +42,6 @@ const UI = (() => {
   };
 
   const render = (player) => {
-    console.log(player);
-
     // render when a ship is shot or missed shot
     for (let i = 0; i < 10; i++) {
       for (let j = 0; j < 10; j++) {
@@ -87,15 +85,15 @@ const UI = (() => {
     }
   };
 
-  const declareWinner = (player) =>{
-    const announcement = document.querySelector(".announcement");
-    if(player.name = "computer"){
-      announcement.textContent = "You Lose!";
-    }else{
-      announcement.textContent = "You Won!"
+  const declareWinner = (player) => {
+    const announcement = document.querySelector('.announcement');
+    if (player.name === 'computer') {
+      announcement.textContent = 'You Lose!';
+    } else {
+      announcement.textContent = 'You Won!';
     }
-  }
-  return { createBoard, render , declareWinner};
+  };
+  return { createBoard, render, declareWinner };
 })();
 
 export default UI;

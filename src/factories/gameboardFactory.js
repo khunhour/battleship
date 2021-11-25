@@ -20,7 +20,9 @@ class Gameboard {
     }
   }
 
-  placeShip(length, row,col, direction) {
+  placeShip(length, rowValue, colValue, direction) {
+    let row = rowValue;
+    let col = colValue;
     if (!this.checkShipPlacementValidity(length, row, col, direction)) return;
     const shipId = this.getShipId();
     const battleship = new Ship(length, shipId);
@@ -35,33 +37,34 @@ class Gameboard {
     }
   }
 
-  recieveAttack(row,col) {
-    console.log('receiveAttack');
+  recieveAttack(row, col) {
     // console.log(this.board[row][col].isShot);
     if (this.board[row][col].isShot) return;
 
     // record missed shot as isShot
     this.board[row][col].isShot = true;
-    console.log(this.board[row][col].isShot);
 
     if (this.checkHasShip(row, col)) {
       const attackedShip = this.getAttackedShip(row, col);
-      attackedShip.hit([row,col]);
+      attackedShip.hit([row, col]);
       attackedShip.checkSunkState();
     }
   }
 
-  checkShipPlacementValidity(length, row,col, direction) {
-    for(i=0;i<length;i++){
-      if(this.board[row][col].hasShip !== ""){
+  checkShipPlacementValidity(length, rowValue, colValue, direction) {
+    let row = rowValue;
+    let col = colValue;
+    for (let i = 0; i < length; i++) {
+      if (this.board[row][col].hasShip !== '') {
         return false;
       }
       if (direction === 'vertical') {
         row++;
-      }else if(direction === 'horizontal'){
+      } else if (direction === 'horizontal') {
         col++;
       }
     }
+    return true;
   }
 
   getShipId() {

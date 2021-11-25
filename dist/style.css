@@ -4,7 +4,6 @@
   font-family: 'Roboto', sans-serif;
 }
 
-
 header {
   font-family: 'Special Elite', cursive;
   font-size: 2rem;
@@ -22,14 +21,14 @@ header div {
 header img {
   height: 2.3rem;
 }
-main{
+main {
   display: flex;
   flex-direction: column;
 }
-.announcement{
+.announcement {
   align-self: center;
   text-align: center;
-  padding:18px;
+  padding: 18px;
   background-color: #e4e4e4;
   margin-bottom: 20px;
   border-radius: 5px;
@@ -65,13 +64,14 @@ main{
   margin-top: -1.5px;
 }
 
-.tile:hover{
+.tile:hover {
   cursor: pointer;
 }
 .red-mark {
   background-image: url('./images/red-mark.png');
   background-color: rgba(243, 152, 92, 0.507) !important;
   background-size: cover;
+  pointer-events: none;
 }
 
 .missed-mark {
@@ -82,19 +82,20 @@ main{
   background-position: center;
   background-origin: content-box;
   padding: 8px;
+  pointer-events: none;
 }
 
 .ship-mark {
   background-color: lightblue;
 }
 
-#start{
-  background-color:#e4e4e4 ;
+#start {
+  background-color: #e4e4e4;
   border: none;
-  padding:0.4rem 0.8rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 5px;
 }
 
-.winner{
+.winner {
   position: absolute;
 }
