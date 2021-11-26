@@ -4,7 +4,7 @@ import UI from './UI';
 
 const Event = (() => {
   const playgame = (e) => {
-    console.log(e.target);
+    const i = e;
   };
   const startTileEvent = () => {
     const computerTiles = document.querySelectorAll('#computer-grid .tile');

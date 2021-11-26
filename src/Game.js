@@ -39,14 +39,21 @@ const Game = (() => {
     }
   };
 
+  const isArrayInArray = (array, item) => {
+    const itemString = JSON.stringify(item);
+    const contain = array.some(
+      (element) => JSON.stringify(element) === itemString
+    );
+    return contain;
+  };
   const getRandomCoord = (player) => {
     console.log('getRandomCoord');
     let randomNum = `0${Math.floor(Math.random() * 100)}`;
     randomNum = randomNum.slice(-2);
     const coord = randomNum.split('').map(Number);
 
-    if (player.moves.includes(coord)) {
-      return getRandomCoord();
+    if (isArrayInArray(player.moves, coord)) {
+      return getRandomCoord(player);
     }
     player.moves.push(coord);
     return coord;
@@ -69,8 +76,9 @@ const Game = (() => {
         possibleMoves.splice(index, 1);
       }
       // remove possible coords that already used
-      if (player.moves.includes(move)) {
+      if (isArrayInArray(player.moves, move)) {
         const index = possibleMoves.indexOf(move);
+        console.log(possibleMoves[index]);
         possibleMoves.splice(index, 1);
       }
     });
@@ -94,14 +102,12 @@ const Game = (() => {
     const lastCoord = player.moves[player.moves.length - 1];
     const row = lastCoord[0];
     const col = lastCoord[1];
-    console.log('coord');
-    console.log(row);
-    console.log(col);
     if (enemy.gameboard.board[row][col].hasShip !== '') {
       return getSmartCoord(player, [row, col]);
     }
     if (player.smartMoves.length !== 0) {
       const smartMove = player.smartMoves[0];
+      player.moves.push(smartMove);
       player.smartMoves.shift();
       return smartMove;
     }
@@ -120,6 +126,8 @@ const Game = (() => {
     computer.attack(human, coord[0], coord[1]);
     UI.render(human);
     checkWinner(computer, human);
+    console.log(JSON.stringify(computer.moves));
+    console.log(JSON.stringify(computer.smartMoves));
   };
   return { startGame, startAttackRound };
 })();
