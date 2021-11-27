@@ -4,13 +4,16 @@
   font-family: 'Roboto', sans-serif;
 }
 
+body {
+  font-family: 'Special Elite';
+}
 header {
   font-family: 'Special Elite', cursive;
   font-size: 2rem;
   font-weight: 900;
   text-align: center;
   padding: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,7 +49,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: solid black 2px;
+  gap: 0.4rem;
 }
 
 #human-grid,
