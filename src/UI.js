@@ -41,6 +41,14 @@ const UI = (() => {
     }
   };
 
+  const updateRemainingShip = (player) => {
+    const remainingShips = player.gameboard.allShips.filter(
+      (ship) => ship.isSunk === false
+    );
+    const playerside = document.querySelector(`.${player.name}-side .ship-num`);
+    playerside.textContent = `Ships Remaining: ${remainingShips.length}`;
+  };
+
   const render = (player) => {
     // render when a ship is shot or missed shot
     for (let i = 0; i < 10; i++) {
@@ -65,6 +73,7 @@ const UI = (() => {
         // }
       }
     }
+    updateRemainingShip(player);
   };
 
   const createBoard = () => {
@@ -93,7 +102,7 @@ const UI = (() => {
       announcement.textContent = 'You Won!';
     }
   };
-  return { createBoard, render, declareWinner };
+  return { createBoard, render, declareWinner, updateRemainingShip };
 })();
 
 export default UI;

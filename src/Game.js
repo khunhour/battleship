@@ -4,8 +4,7 @@ import UI from './UI';
 const Player = require('./factories/playerFactory');
 
 const Game = (() => {
-  const name = 0;
-  const human = new Player(name);
+  const human = new Player('human');
   const computer = new Player('computer');
 
   const placingShip = (player) => {
@@ -49,13 +48,15 @@ const Game = (() => {
     // computer's turn to attack
     const coord = Coordinates.getCoord(computer, human);
     Coordinates.calculateNextBestCoord(computer, human, coord);
-    // console.log(computer.smartMoves);
     computer.attack(human, coord[0], coord[1]);
     UI.render(human);
     checkWinner(computer, human);
     console.log(JSON.stringify(computer.moves));
     console.log(JSON.stringify(computer.smartMoves));
   };
+
+  const restartGame = () => {};
+
   return { startGame, startAttackRound };
 })();
 
