@@ -20,9 +20,9 @@ class Gameboard {
     }
   }
 
-  placeShip(length, rowValue, colValue, direction) {
-    let row = rowValue;
-    let col = colValue;
+  placeShip(length, coord, direction) {
+    let row = coord[0];
+    let col = coord[1];
     if (!this.checkShipPlacementValidity(length, row, col, direction)) return;
     const shipId = this.getShipId();
     const battleship = new Ship(length, shipId);
