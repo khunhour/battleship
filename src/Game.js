@@ -48,6 +48,7 @@ const Game = (() => {
 
     // computer's turn to attack
     const coord = Coordinates.getCoord(computer, human);
+    Coordinates.calculateNextBestCoord(computer, human, coord);
     // console.log(computer.smartMoves);
     computer.attack(human, coord[0], coord[1]);
     UI.render(human);

@@ -32,13 +32,28 @@ const Coordinates = (() => {
     ];
     possibleMoves.forEach((move) => {
       // remove possible coords that are not within board range
+      console.log(move);
+      console.log('forEach');
+      //   console.log('forEach row');
+      //   console.log(`move[0]:${move[0]}`);
+      //   console.log(move[0] < 0);
+      //   console.log('forEach col');
+      //   console.log(`move[1]:${move[1]}`);
+      //   console.log(move[1] < 0);
       if (move[0] < 0 || move[0] > 9 || move[1] < 0 || move[1] > 9) {
-        const index = possibleMoves.indexOf(move);
+        console.log('minus outside range');
+        const index = possibleMoves.findIndex(
+          (element) => JSON.stringify(element) === JSON.stringify(move)
+        );
         possibleMoves.splice(index, 1);
       }
       // remove possible coords that already used
       if (isArrayInArray(player.moves, move)) {
-        const index = possibleMoves.indexOf(move);
+        console.log('already played');
+        const index = possibleMoves.findIndex(
+          (element) => JSON.stringify(element) === JSON.stringify(move)
+        );
+        console.log(index);
         console.log(possibleMoves[index]);
         possibleMoves.splice(index, 1);
       }
@@ -56,16 +71,45 @@ const Coordinates = (() => {
     return smartCoord;
   };
 
+  const calculateNextBestCoord = (player, enemy, coord) => {
+    const row = coord[0];
+    const col = coord[1];
+    if (enemy.gameboard.board[row][col].hasShip === '') return;
+    const possibleMoves = [
+      [row, col + 1],
+      [row, col - 1],
+      [row + 1, col],
+      [row - 1, col],
+    ];
+    // array.slice to create a copy
+    possibleMoves.slice().forEach((move) => {
+      // remove possible coords that are not within board range
+      console.log(move);
+      console.log('forEach');
+      if (move[0] < 0 || move[0] > 9 || move[1] < 0 || move[1] > 9) {
+        console.log('minus outside range');
+        const index = possibleMoves.findIndex(
+          (element) => JSON.stringify(element) === JSON.stringify(move)
+        );
+        possibleMoves.splice(index, 1);
+      }
+      // remove possible coords that already used
+      if (isArrayInArray(player.moves, move)) {
+        console.log('already played');
+        const index = possibleMoves.findIndex(
+          (element) => JSON.stringify(element) === JSON.stringify(move)
+        );
+        console.log(index);
+        console.log(possibleMoves[index]);
+        possibleMoves.splice(index, 1);
+      }
+    });
+    possibleMoves.forEach((move) => {
+      player.smartMoves.push(move);
+    });
+  };
   const getCoord = (player, enemy) => {
-    // console.log(player.smartMoves);
-    // console.log('getCoord');
     if (player.moves.length === 0) return getRandomCoord(player);
-    const lastCoord = player.moves[player.moves.length - 1];
-    const row = lastCoord[0];
-    const col = lastCoord[1];
-    if (enemy.gameboard.board[row][col].hasShip !== '') {
-      return getSmartCoord(player, [row, col]);
-    }
     if (player.smartMoves.length !== 0) {
       const smartMove = player.smartMoves[0];
       player.moves.push(smartMove);
@@ -75,7 +119,7 @@ const Coordinates = (() => {
     return getRandomCoord(player);
   };
 
-  return { getCoord };
+  return { getCoord, calculateNextBestCoord };
 })();
 
 export default Coordinates;
