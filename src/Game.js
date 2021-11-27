@@ -8,22 +8,22 @@ const Game = (() => {
   const human = new Player('human');
   const computer = new Player('computer');
 
-  const placingShip = (player) => {
-    PlacingShips.placeShipRandomly(player);
-    // player.gameboard.placeShip(5, 0, 0, 'horizontal');
-    // // sth wrong with placeship validation
-    // player.gameboard.placeShip(4, 3, 1, 'vertical');
-    // player.gameboard.placeShip(2, 8, 1, 'horizontal');
+  // const placingShip = (player) => {
+  //   PlacingShips.placeShipRandomly(player);
+  //   // player.gameboard.placeShip(5, 0, 0, 'horizontal');
+  //   // // sth wrong with placeship validation
+  //   // player.gameboard.placeShip(4, 3, 1, 'vertical');
+  //   // player.gameboard.placeShip(2, 8, 1, 'horizontal');
 
-    // player.gameboard.placeShip(2, 8, 8, 'vertical');
-    // player.gameboard.placeShip(2, 2, 9, 'vertical');
-  };
+  //   // player.gameboard.placeShip(2, 8, 8, 'vertical');
+  //   // player.gameboard.placeShip(2, 2, 9, 'vertical');
+  // };
 
   const startGame = () => {
-    placingShip(human);
-    placingShip(computer);
+    PlacingShips.placeShipRandomly(human);
+    PlacingShips.placeShipRandomly(computer);
     UI.render(human);
-    UI.render(computer);
+    // UI.render(computer);
   };
 
   const checkAllShipsSunk = (player) => {

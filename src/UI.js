@@ -64,13 +64,11 @@ const UI = (() => {
         ) {
           displayMissedShot(player, i, j);
         }
-
-        if (player.gameboard.board[i][j].hasShip !== '') {
-          displayPlayerShips(player, i, j);
+        if (player.name === 'human') {
+          if (player.gameboard.board[i][j].hasShip !== '') {
+            displayPlayerShips(player, i, j);
+          }
         }
-        // if player's gameboard then display where ship is, if computer then is it hidden
-        // if (player.name !== 'computer') {
-        // }
       }
     }
     updateRemainingShip(player);
