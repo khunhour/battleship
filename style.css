@@ -46,6 +46,7 @@ main {
   margin-bottom: 20px;
   border-radius: 5px;
   min-width: 500px !important;
+  border-bottom: solid 2px black;
 }
 
 .board {
@@ -118,8 +119,10 @@ main {
 }
 
 button {
+  font-family: inherit;
   background-color: #e4e4e4;
   border: none;
+  border-bottom: solid 2px black;
   padding: 0.4rem 0.8rem;
   border-radius: 5px;
 }
