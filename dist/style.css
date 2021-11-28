@@ -2,6 +2,12 @@
   font-size: 18px;
   font-family: 'Special Elite', cursive;
   font-family: 'Roboto', sans-serif;
+  --ship0: #2196f3;
+  --ship1: #03a9f4;
+  --ship2: #00bcd4;
+  --ship3: #009688;
+  --ship4: #08e7dc;
+  --ship5: #64b5f6;
 }
 
 html,
@@ -66,7 +72,7 @@ main {
 
 .tile {
   background-color: white;
-  border: solid 1.5px rgb(48, 178, 221);
+  border: solid 1.5px rgb(68, 68, 68);
   margin-left: -1.5px;
   margin-top: -1.5px;
 }
@@ -84,7 +90,7 @@ main {
 .missed-mark {
   background-image: url('./images/miss-mark.png');
   background-size: cover;
-  background-color: rgba(253, 253, 112, 0.329);
+  background-color: rgba(255, 238, 5, 0.425);
   background-repeat: no-repeat;
   background-position: center;
   background-origin: content-box;
@@ -92,8 +98,23 @@ main {
   pointer-events: none;
 }
 
-.ship-mark {
-  background-color: lightblue;
+.ship-mark0 {
+  background-color: var(--ship0);
+}
+.ship-mark1 {
+  background-color: var(--ship1);
+}
+.ship-mark2 {
+  background-color: var(--ship2);
+}
+.ship-mark3 {
+  background-color: var(--ship3);
+}
+.ship-mark4 {
+  background-color: var(--ship4);
+}
+.ship-mark5 {
+  background-color: var(--ship5);
 }
 
 button {

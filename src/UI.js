@@ -27,7 +27,8 @@ const UI = (() => {
     }
   };
 
-  const displayPlayerShips = (player, row, col) => {
+  const displayPlayerShips = (player, row, col, ship) => {
+    // remove computer here
     if (player.name === 'computer') {
       const tile = document.querySelector(
         `#computer-grid [data-row="${row}"][data-col="${col}"]`
@@ -37,7 +38,7 @@ const UI = (() => {
       const tile = document.querySelector(
         `#human-grid [data-row="${row}"][data-col="${col}"]`
       );
-      tile.classList.add('ship-mark');
+      tile.classList.add(`ship-mark${ship}`);
     }
   };
 
@@ -64,8 +65,9 @@ const UI = (() => {
         ) {
           displayMissedShot(player, i, j);
         }
-        if (player.gameboard.board[i][j].hasShip !== '') {
-          displayPlayerShips(player, i, j);
+        const ship = player.gameboard.board[i][j].hasShip;
+        if (ship !== '') {
+          displayPlayerShips(player, i, j, ship);
         }
         // if (player.name === 'human') {
         // }
