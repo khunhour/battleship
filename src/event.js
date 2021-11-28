@@ -24,7 +24,14 @@ const Event = (() => {
       Game.startGame();
       startTileEvent();
     });
+
+    const restartBtn = document.getElementById('restart');
+    restartBtn.addEventListener('click', () => {
+      Game.restartGame();
+      startTileEvent();
+    });
   };
+
   return { startButtonEvent };
 })();
 

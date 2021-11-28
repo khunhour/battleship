@@ -11,6 +11,12 @@ class Player {
   attack(enemy, row, col) {
     enemy.gameboard.recieveAttack(row, col);
   }
+
+  restartPlayer() {
+    this.moves = [];
+    this.smartMoves = [];
+    this.gameboard = new Gameboard();
+  }
 }
 
 module.exports = Player;

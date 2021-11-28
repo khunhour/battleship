@@ -64,11 +64,11 @@ const UI = (() => {
         ) {
           displayMissedShot(player, i, j);
         }
-        if (player.name === 'human') {
-          if (player.gameboard.board[i][j].hasShip !== '') {
-            displayPlayerShips(player, i, j);
-          }
+        if (player.gameboard.board[i][j].hasShip !== '') {
+          displayPlayerShips(player, i, j);
         }
+        // if (player.name === 'human') {
+        // }
       }
     }
     updateRemainingShip(player);
@@ -100,7 +100,36 @@ const UI = (() => {
       announcement.textContent = 'You Won!';
     }
   };
-  return { createBoard, render, declareWinner, updateRemainingShip };
+
+  const disableBoard = () => {
+    const board = document.querySelector('.board');
+    board.classList.add('fade');
+  };
+
+  const enableBoard = () => {
+    const board = document.querySelector('.board');
+    board.classList.remove('fade');
+  };
+
+  const restartBoard = () => {
+    document.getElementById('human-grid').textContent = '';
+    document.getElementById('computer-grid').textContent = '';
+    const shipNum = document.querySelectorAll('.ship-num');
+    shipNum.forEach((element) => {
+      const div = element;
+      div.textContent = 'Ships Remaining: 6';
+    });
+    createBoard();
+    enableBoard();
+  };
+  return {
+    createBoard,
+    render,
+    declareWinner,
+    updateRemainingShip,
+    disableBoard,
+    restartBoard,
+  };
 })();
 
 export default UI;

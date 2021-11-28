@@ -7,37 +7,18 @@ const Player = require('./factories/playerFactory');
 const Game = (() => {
   const human = new Player('human');
   const computer = new Player('computer');
-
-  // const placingShip = (player) => {
-  //   PlacingShips.placeShipRandomly(player);
-  //   // player.gameboard.placeShip(5, 0, 0, 'horizontal');
-  //   // // sth wrong with placeship validation
-  //   // player.gameboard.placeShip(4, 3, 1, 'vertical');
-  //   // player.gameboard.placeShip(2, 8, 1, 'horizontal');
-
-  //   // player.gameboard.placeShip(2, 8, 8, 'vertical');
-  //   // player.gameboard.placeShip(2, 2, 9, 'vertical');
-  // };
-
   const startGame = () => {
     PlacingShips.placeShipRandomly(human);
     PlacingShips.placeShipRandomly(computer);
     UI.render(human);
-    // UI.render(computer);
-  };
-
-  const checkAllShipsSunk = (player) => {
-    for (let i = 0; i < player.gameboard.allShips.length; i++) {
-      if (!player.gameboard.allShips[i].isSunk) {
-        return false;
-      }
-    }
-    return true;
+    UI.render(computer);
   };
 
   const checkWinner = (player, enemy) => {
-    if (checkAllShipsSunk(enemy)) {
+    const allShipsSunk = enemy.gameboard.checkAllShipsAreSunk();
+    if (allShipsSunk) {
       UI.declareWinner(player);
+      UI.disableBoard();
     }
   };
 
@@ -53,13 +34,16 @@ const Game = (() => {
     computer.attack(human, coord[0], coord[1]);
     UI.render(human);
     checkWinner(computer, human);
-    console.log(JSON.stringify(computer.moves));
-    console.log(JSON.stringify(computer.smartMoves));
   };
 
-  const restartGame = () => {};
+  const restartGame = () => {
+    UI.restartBoard();
+    human.restartPlayer();
+    computer.restartPlayer();
+    startGame();
+  };
 
-  return { startGame, startAttackRound };
+  return { startGame, startAttackRound, restartGame };
 })();
 
 export default Game;
