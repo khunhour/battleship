@@ -4,22 +4,26 @@
   font-family: 'Roboto', sans-serif;
 }
 
+html,
 body {
   font-family: 'Special Elite';
+  margin: 0;
+  padding: 0;
 }
+
 header {
   font-family: 'Special Elite', cursive;
   font-size: 2rem;
   font-weight: 900;
   text-align: center;
   padding: 1rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 header div {
-  padding-top: 10px;
+  padding-top: 5px;
 }
 header img {
   height: 2.3rem;
@@ -92,7 +96,7 @@ main {
   background-color: lightblue;
 }
 
-#start {
+button {
   background-color: #e4e4e4;
   border: none;
   padding: 0.4rem 0.8rem;
@@ -101,4 +105,12 @@ main {
 
 .winner {
   position: absolute;
+}
+
+.fade {
+  pointer-events: none;
+  opacity: 50%;
+}
+.fade * {
+  pointer-events: none;
 }
