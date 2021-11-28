@@ -34,11 +34,10 @@ const PlacingShips = (() => {
   };
 
   const placeShipRandomly = (player) => {
-    const direction = ['horizontal', 'vertical'];
-    const randomDirection = direction[Math.floor(Math.random() * 2)];
-
     const AllShipsLength = [5, 4, 3, 2, 2, 1];
     AllShipsLength.forEach((length) => {
+      const direction = ['horizontal', 'vertical'];
+      const randomDirection = direction[Math.floor(Math.random() * 2)];
       const coord = getValidPlacement(player, length, randomDirection);
       player.gameboard.placeShip(length, coord, randomDirection);
     });
