@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./style.css" />
     <link rel="icon" href="./images/red-mark.png" />
   </head>
-  <body>
+  <body class="noselect">
     <header>
       <img src="./images/red-mark.png" alt="battleship-logo" />
       <div>Battleship</div>
@@ -28,14 +28,14 @@
         <button id="randomize">Randomize</button>
       </div>
       <div class="board">
-        <div class="human-side">
+        <div class="human-side" unselectable="on">
           <div class="ship-num">Ships Remaining: 6</div>
           <div id="human-grid"></div>
           <div class="grid-name">Your Board</div>
         </div>
-        <div class="computer-side">
+        <div class="computer-side" unselectable="on">
           <div class="ship-num">Ships Remaining: 6</div>
-          <div id="computer-grid"></div>
+          <div id="computer-grid" unselectable="on"></div>
           <div class="grid-name">Computer's Board</div>
         </div>
       </div>
