@@ -1,4 +1,5 @@
 import Coordinates from './Coordinates';
+import DragAndDrop from './dragAndDrop';
 import PlacingShips from './PlacingShips';
 import UI from './UI';
 
@@ -11,6 +12,7 @@ const Game = (() => {
     PlacingShips.placeShipRandomly(human);
     PlacingShips.placeShipRandomly(computer);
     UI.render(human);
+    DragAndDrop.activateDragStartEvent();
     UI.render(computer);
   };
 

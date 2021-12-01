@@ -1,3 +1,5 @@
+import DragAndDrop from './dragAndDrop';
+
 const UI = (() => {
   const displayRedMark = (player, row, col) => {
     if (player.name === 'computer') {
@@ -39,6 +41,7 @@ const UI = (() => {
         `#human-grid [data-row="${row}"][data-col="${col}"]`
       );
       tile.classList.add(`ship-mark${ship}`);
+      tile.draggable = true;
     }
   };
 
@@ -66,7 +69,7 @@ const UI = (() => {
           displayMissedShot(player, i, j);
         }
         const ship = player.gameboard.board[i][j].hasShip;
-        if (ship !== '') {
+        if (ship !== '' && player.name === 'human') {
           displayPlayerShips(player, i, j, ship);
         }
         // if (player.name === 'human') {
@@ -79,15 +82,18 @@ const UI = (() => {
   const createBoard = () => {
     const playerGrid = document.getElementById('human-grid');
     const computerGrid = document.getElementById('computer-grid');
-
     for (let i = 0; i < 10; i++) {
       for (let j = 0; j < 10; j++) {
         const computerDiv = document.createElement('div');
         computerDiv.classList.add('tile');
         computerDiv.dataset.row = i;
         computerDiv.dataset.col = j;
-        const humanDiv = computerDiv.cloneNode();
-
+        const humanDiv = document.createElement('div');
+        humanDiv.classList.add('tile');
+        humanDiv.dataset.row = i;
+        humanDiv.dataset.col = j;
+        DragAndDrop.activateDragOverEvent(humanDiv);
+        DragAndDrop.activateDropEvent(humanDiv);
         playerGrid.appendChild(humanDiv);
         computerGrid.appendChild(computerDiv);
       }

@@ -3,11 +3,21 @@
   font-family: 'Special Elite', cursive;
   font-family: 'Roboto', sans-serif;
   --ship0: #2196f3;
-  --ship1: #03a9f4;
+  --ship1: #016fec;
   --ship2: #00bcd4;
   --ship3: #009688;
   --ship4: #08e7dc;
   --ship5: #64b5f6;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 html,
@@ -137,4 +147,12 @@ button {
 }
 .fade * {
   pointer-events: none;
+}
+
+.can-drop {
+  background-color: rgba(0, 128, 0, 0.329);
+}
+
+.can-not-drop {
+  background-color: rgba(255, 0, 0, 0.452);
 }
