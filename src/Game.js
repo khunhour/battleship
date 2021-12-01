@@ -20,7 +20,8 @@ const Game = (() => {
     const allShipsSunk = enemy.gameboard.checkAllShipsAreSunk();
     if (allShipsSunk) {
       UI.declareWinner(player);
-      UI.disableBoard();
+      UI.toggleBoard(player);
+      UI.toggleBoard(enemy);
     }
   };
 
@@ -40,6 +41,8 @@ const Game = (() => {
 
   const restartGame = () => {
     UI.restartBoard();
+    UI.toggleBoard(human);
+    UI.toggleBoard(computer);
     human.restartPlayer();
     computer.restartPlayer();
     startGame();

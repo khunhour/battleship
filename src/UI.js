@@ -109,14 +109,14 @@ const UI = (() => {
     }
   };
 
-  const disableBoard = () => {
-    const board = document.querySelector('.board');
-    board.classList.add('fade');
-  };
-
-  const enableBoard = () => {
-    const board = document.querySelector('.board');
-    board.classList.remove('fade');
+  const toggleBoard = (player) => {
+    if (player.name === 'human') {
+      const board = document.querySelector('.human-side #human-grid');
+      board.classList.toggle('fade');
+    } else {
+      const board = document.querySelector('.computer-side #computer-grid');
+      board.classList.toggle('fade');
+    }
   };
 
   const restartBoard = () => {
@@ -128,14 +128,13 @@ const UI = (() => {
       div.textContent = 'Ships Remaining: 6';
     });
     createBoard();
-    enableBoard();
   };
   return {
     createBoard,
     render,
     declareWinner,
     updateRemainingShip,
-    disableBoard,
+    toggleBoard,
     restartBoard,
   };
 })();
