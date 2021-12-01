@@ -1,6 +1,7 @@
 const DragAndDrop = (() => {
   const dragStart = (event) => {
     event.dataTransfer.setData('text', event.target.className);
+    // event.target.className = 'tile';
     console.log('dragging');
   };
 
@@ -17,6 +18,7 @@ const DragAndDrop = (() => {
 
   const dragLeave = (e) => {
     console.log(e.target.classList);
+    e.target.draggable = false;
     e.target.classList.remove('can-not-drop');
     e.target.classList.remove('can-drop');
   };
