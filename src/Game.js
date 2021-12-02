@@ -16,6 +16,20 @@ const Game = (() => {
     UI.render(computer);
   };
 
+  const restartGame = () => {
+    UI.restartBoard();
+    // UI.toggleBoard(human);
+    // UI.toggleBoard(computer);
+    human.restartPlayer();
+    computer.restartPlayer();
+  };
+
+  const randomizeShip = () => {
+    restartGame();
+    PlacingShips.placeShipRandomly(human);
+    UI.render(human);
+  };
+
   const checkWinner = (player, enemy) => {
     const allShipsSunk = enemy.gameboard.checkAllShipsAreSunk();
     if (allShipsSunk) {
@@ -39,16 +53,7 @@ const Game = (() => {
     checkWinner(computer, human);
   };
 
-  const restartGame = () => {
-    UI.restartBoard();
-    UI.toggleBoard(human);
-    UI.toggleBoard(computer);
-    human.restartPlayer();
-    computer.restartPlayer();
-    startGame();
-  };
-
-  return { startGame, startAttackRound, restartGame };
+  return { startGame, startAttackRound, restartGame, randomizeShip };
 })();
 
 export default Game;

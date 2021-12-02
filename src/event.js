@@ -30,6 +30,9 @@ const Event = (() => {
       Game.restartGame();
       startTileEvent();
     });
+
+    const randomize = document.getElementById('randomize');
+    randomize.addEventListener('click', Game.randomizeShip);
   };
 
   return { startButtonEvent };
