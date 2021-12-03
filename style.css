@@ -137,8 +137,23 @@ label {
   border-bottom: solid 2px black;
   padding: 0.4rem 0.8rem;
   border-radius: 5px;
+  width: 100px;
 }
-
+#randomize {
+  background-image: linear-gradient(45deg, rgb(3, 250, 209), rgb(6, 198, 247));
+}
+#start {
+  background-color: #0cd15e;
+}
+#restart {
+  background-color: #ffc40c;
+}
+#reset {
+  background-color: rgb(252, 88, 88);
+}
+label {
+  background-color: rgb(236, 69, 236);
+}
 input[type='checkbox'] {
   position: absolute;
   top: 0;
