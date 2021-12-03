@@ -1,5 +1,6 @@
 /* eslint-disable prefer-destructuring */
 import Game from './Game';
+import PlacingShips from './PlacingShips';
 import UI from './UI';
 
 const Event = (() => {
@@ -18,6 +19,13 @@ const Event = (() => {
     });
   };
 
+  const startPlaceShipsEvent = () => {
+    const humanGrid = document.querySelector('#human-grid');
+    humanGrid.addEventListener('mouseover', Game.displayHoverEffect);
+    humanGrid.addEventListener('mouseleave', PlacingShips.removeHoverShipUI);
+    humanGrid.addEventListener('click', Game.placeShipManually);
+  };
+
   const startButtonEvent = () => {
     const startBtn = document.getElementById('start');
     startBtn.addEventListener('click', () => {
@@ -33,9 +41,12 @@ const Event = (() => {
 
     const randomize = document.getElementById('randomize');
     randomize.addEventListener('click', Game.randomizeShip);
+
+    const reset = document.getElementById('reset');
+    reset.addEventListener('click', Game.restartGame);
   };
 
-  return { startButtonEvent };
+  return { startButtonEvent, startPlaceShipsEvent };
 })();
 
 export default Event;

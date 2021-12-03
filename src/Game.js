@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 import Coordinates from './Coordinates';
 import DragAndDrop from './dragAndDrop';
 import PlacingShips from './PlacingShips';
@@ -9,10 +10,10 @@ const Game = (() => {
   const human = new Player('human');
   const computer = new Player('computer');
   const startGame = () => {
-    PlacingShips.placeShipRandomly(human);
+    // PlacingShips.placeShipRandomly(human);
     PlacingShips.placeShipRandomly(computer);
-    UI.render(human);
-    DragAndDrop.activateDragStartEvent();
+    // UI.render(human);
+    // DragAndDrop.activateDragStartEvent();
     UI.render(computer);
   };
 
@@ -53,7 +54,40 @@ const Game = (() => {
     checkWinner(computer, human);
   };
 
-  return { startGame, startAttackRound, restartGame, randomizeShip };
+  const placeShipManually = (e) => {
+    console.log('clicked');
+    const shipPlaced = human.gameboard.allShips.length;
+    const AllShipsLength = [5, 4, 3, 2, 2, 1];
+    const length = AllShipsLength[shipPlaced];
+    const row = e.target.dataset.row;
+    const col = e.target.dataset.col;
+    if (
+      !PlacingShips.checkAlreadyHasShip(human, [row, col], length, 'horizontal')
+    ) {
+      human.gameboard.placeShip(length, [row, col], 'horizontal');
+    }
+    console.log(human.gameboard.allShips);
+    UI.render(human);
+  };
+
+  const displayHoverEffect = (e) => {
+    PlacingShips.removeHoverShipUI();
+    const shipPlaced = human.gameboard.allShips.length;
+    const AllShipsLength = [5, 4, 3, 2, 2, 1];
+    PlacingShips.hoverShipUI(
+      e.target,
+      AllShipsLength[shipPlaced],
+      'horizontal'
+    );
+  };
+  return {
+    startGame,
+    startAttackRound,
+    restartGame,
+    randomizeShip,
+    placeShipManually,
+    displayHoverEffect,
+  };
 })();
 
 export default Game;
