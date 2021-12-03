@@ -1,5 +1,3 @@
-import DragAndDrop from './dragAndDrop';
-
 const UI = (() => {
   const displayRedMark = (player, row, col) => {
     if (player.name === 'computer') {
@@ -41,7 +39,6 @@ const UI = (() => {
         `#human-grid [data-row="${row}"][data-col="${col}"]`
       );
       tile.classList.add(`ship-mark${ship}`);
-      tile.draggable = true;
     }
   };
 
@@ -92,8 +89,6 @@ const UI = (() => {
         humanDiv.classList.add('tile');
         humanDiv.dataset.row = i;
         humanDiv.dataset.col = j;
-        DragAndDrop.activateDragOverEvent(humanDiv);
-        DragAndDrop.activateDropEvent(humanDiv);
         playerGrid.appendChild(humanDiv);
         computerGrid.appendChild(computerDiv);
       }

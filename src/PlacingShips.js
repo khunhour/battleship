@@ -7,6 +7,15 @@ const PlacingShips = (() => {
     return false;
   };
 
+  const checkplacementOutsideBoard = (coord, length, direction) => {
+    if (direction === 'horizontal') {
+      if (length > 10 - coord[1]) return true;
+      return false;
+    }
+    if (length > 10 - coord[0]) return true;
+    return false;
+  };
+
   const checkAlreadyHasShip = (player, coord, length, direction) => {
     let hasShip = false;
     let row = Number(coord[0]);
@@ -33,7 +42,6 @@ const PlacingShips = (() => {
           hasShip = true;
         }
       }
-
       // check if the actual coord itself has ship
       if (player.gameboard.board[row][col].hasShip !== '') {
         hasShip = true;
@@ -64,7 +72,7 @@ const PlacingShips = (() => {
     return [row, col];
   };
 
-  const hoverShipUI = (tile, length, direction) => {
+  const hoverShipUI = (player, tile, length, direction) => {
     const row = tile.dataset.row;
     const col = tile.dataset.col;
     let hoverLength = length;
@@ -72,6 +80,9 @@ const PlacingShips = (() => {
       let className = 'green-hovered-tile';
       if (length > 10 - col) {
         hoverLength = 10 - col;
+        className = 'red-hovered-tile';
+      }
+      if (checkAlreadyHasShip(player, [row, col], hoverLength, direction)) {
         className = 'red-hovered-tile';
       }
       for (let i = 0; i < hoverLength; i++) {
@@ -122,6 +133,7 @@ const PlacingShips = (() => {
     hoverShipUI,
     removeHoverShipUI,
     checkAlreadyHasShip,
+    checkplacementOutsideBoard,
   };
 })();
 

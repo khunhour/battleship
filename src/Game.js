@@ -1,6 +1,5 @@
 /* eslint-disable prefer-destructuring */
 import Coordinates from './Coordinates';
-import DragAndDrop from './dragAndDrop';
 import PlacingShips from './PlacingShips';
 import UI from './UI';
 
@@ -13,7 +12,6 @@ const Game = (() => {
     // PlacingShips.placeShipRandomly(human);
     PlacingShips.placeShipRandomly(computer);
     // UI.render(human);
-    // DragAndDrop.activateDragStartEvent();
     UI.render(computer);
   };
 
@@ -64,10 +62,17 @@ const Game = (() => {
     const row = e.target.dataset.row;
     const col = e.target.dataset.col;
     if (
-      !PlacingShips.checkAlreadyHasShip(human, [row, col], length, 'horizontal')
+      PlacingShips.checkplacementOutsideBoard([row, col], length, 'horizontal')
     ) {
-      human.gameboard.placeShip(length, [row, col], 'horizontal');
+      console.log('isoutofrange');
+      return;
     }
+    if (
+      PlacingShips.checkAlreadyHasShip(human, [row, col], length, 'horizontal')
+    ) {
+      return;
+    }
+    human.gameboard.placeShip(length, [row, col], 'horizontal');
     UI.render(human);
     if (human.gameboard.allShips.length > 5) {
       UI.disableBoardEvent(human, false);
@@ -79,6 +84,7 @@ const Game = (() => {
     const shipPlaced = human.gameboard.allShips.length;
     const AllShipsLength = [5, 4, 3, 2, 2, 1];
     PlacingShips.hoverShipUI(
+      human,
       e.target,
       AllShipsLength[shipPlaced],
       'horizontal'
