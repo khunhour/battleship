@@ -59,20 +59,21 @@ const Game = (() => {
 
     const standbyShips = [5, 4, 3, 2, 2, 1];
     const length = standbyShips[allshipsLength];
+    const direction = PlacingShips.getShipDirection();
     const row = e.target.dataset.row;
     const col = e.target.dataset.col;
     if (
-      PlacingShips.checkplacementOutsideBoard([row, col], length, 'horizontal')
+      PlacingShips.checkplacementOutsideBoard([row, col], length, direction)
     ) {
       console.log('isoutofrange');
       return;
     }
     if (
-      PlacingShips.checkAlreadyHasShip(human, [row, col], length, 'horizontal')
+      PlacingShips.checkAlreadyHasShip(human, [row, col], length, direction)
     ) {
       return;
     }
-    human.gameboard.placeShip(length, [row, col], 'horizontal');
+    human.gameboard.placeShip(length, [row, col], direction);
     UI.render(human);
     if (human.gameboard.allShips.length > 5) {
       UI.disableBoardEvent(human, false);
@@ -81,13 +82,14 @@ const Game = (() => {
 
   const displayHoverEffect = (e) => {
     PlacingShips.removeHoverShipUI();
+    const direction = PlacingShips.getShipDirection();
     const shipPlaced = human.gameboard.allShips.length;
     const AllShipsLength = [5, 4, 3, 2, 2, 1];
     PlacingShips.hoverShipUI(
       human,
       e.target,
       AllShipsLength[shipPlaced],
-      'horizontal'
+      direction
     );
   };
   return {

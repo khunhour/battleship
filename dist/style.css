@@ -128,7 +128,9 @@ main {
   background-color: var(--ship5);
 }
 
-button {
+button,
+label {
+  font-size: 0.8rem;
   font-family: inherit;
   background-color: #e4e4e4;
   border: none;

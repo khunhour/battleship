@@ -71,28 +71,48 @@ const PlacingShips = (() => {
     }
     return [row, col];
   };
+  const getShipDirection = () => {
+    if (document.querySelector('#rotate:checked') === null) {
+      return 'vertical';
+    }
+    return 'horizontal';
+  };
 
   const hoverShipUI = (player, tile, length, direction) => {
-    const row = tile.dataset.row;
-    const col = tile.dataset.col;
+    const row = Number(tile.dataset.row);
+    const col = Number(tile.dataset.col);
     let hoverLength = length;
+    let className = 'green-hovered-tile';
+    // display red when at the edge of the board and length is out of range
     if (direction === 'horizontal') {
-      let className = 'green-hovered-tile';
       if (length > 10 - col) {
         hoverLength = 10 - col;
         className = 'red-hovered-tile';
       }
-      if (checkAlreadyHasShip(player, [row, col], hoverLength, direction)) {
+    } else if (direction === 'vertical') {
+      if (length > 10 - row) {
+        hoverLength = 10 - row;
         className = 'red-hovered-tile';
       }
-      for (let i = 0; i < hoverLength; i++) {
-        const x = row;
-        const y = Number(col) + i;
-        const hoveredDiv = document.querySelector(
-          `#human-grid [data-row="${x}"][data-col="${y}"]`
-        );
-        hoveredDiv.classList.add(className);
+    }
+    // display red on coord that has ships attached near it
+    if (checkAlreadyHasShip(player, [row, col], hoverLength, direction)) {
+      className = 'red-hovered-tile';
+    }
+    for (let i = 0; i < hoverLength; i++) {
+      let x;
+      let y;
+      if (direction === 'horizontal') {
+        x = row;
+        y = col + i;
+      } else {
+        x = row + i;
+        y = col;
       }
+      const hoveredDiv = document.querySelector(
+        `#human-grid [data-row="${x}"][data-col="${y}"]`
+      );
+      hoveredDiv.classList.add(className);
     }
   };
 
@@ -134,6 +154,7 @@ const PlacingShips = (() => {
     removeHoverShipUI,
     checkAlreadyHasShip,
     checkplacementOutsideBoard,
+    getShipDirection,
   };
 })();
 
