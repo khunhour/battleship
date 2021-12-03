@@ -147,12 +147,11 @@ input[type='checkbox'] {
   position: absolute;
 }
 
-.fade {
+.no-event {
   pointer-events: none;
-  opacity: 50%;
 }
-.fade * {
-  pointer-events: none;
+.fade {
+  opacity: 50%;
 }
 
 .can-drop {

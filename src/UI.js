@@ -109,14 +109,20 @@ const UI = (() => {
     }
   };
 
-  const toggleBoard = (player) => {
-    if (player.name === 'human') {
-      const board = document.querySelector('.human-side #human-grid');
-      board.classList.toggle('fade');
-    } else {
-      const board = document.querySelector('.computer-side #computer-grid');
+  const disableBoardEvent = (player, hasFade) => {
+    const playerName = player.name;
+    const board = document.querySelector(`#${playerName}-grid`);
+    board.classList.add('no-event');
+    if (hasFade) {
       board.classList.toggle('fade');
     }
+  };
+
+  const enableBoardEvent = (player) => {
+    const playerName = player.name;
+    const board = document.querySelector(`#${playerName}-grid`);
+    board.classList.remove('no-event');
+    board.classList.remove('fade');
   };
 
   const restartBoard = () => {
@@ -134,8 +140,9 @@ const UI = (() => {
     render,
     declareWinner,
     updateRemainingShip,
-    toggleBoard,
+    disableBoardEvent,
     restartBoard,
+    enableBoardEvent,
   };
 })();
 

@@ -19,8 +19,8 @@ const Game = (() => {
 
   const restartGame = () => {
     UI.restartBoard();
-    // UI.toggleBoard(human);
-    // UI.toggleBoard(computer);
+    UI.enableBoardEvent(human);
+    UI.enableBoardEvent(computer);
     human.restartPlayer();
     computer.restartPlayer();
   };
@@ -28,6 +28,7 @@ const Game = (() => {
   const randomizeShip = () => {
     restartGame();
     PlacingShips.placeShipRandomly(human);
+    UI.disableBoardEvent(human, false);
     UI.render(human);
   };
 
@@ -35,8 +36,8 @@ const Game = (() => {
     const allShipsSunk = enemy.gameboard.checkAllShipsAreSunk();
     if (allShipsSunk) {
       UI.declareWinner(player);
-      UI.toggleBoard(player);
-      UI.toggleBoard(enemy);
+      UI.disableBoardEvent(player, true);
+      UI.disableBoardEvent(enemy, true);
     }
   };
 
@@ -56,9 +57,10 @@ const Game = (() => {
 
   const placeShipManually = (e) => {
     console.log('clicked');
-    const shipPlaced = human.gameboard.allShips.length;
-    const AllShipsLength = [5, 4, 3, 2, 2, 1];
-    const length = AllShipsLength[shipPlaced];
+    const allshipsLength = human.gameboard.allShips.length;
+
+    const standbyShips = [5, 4, 3, 2, 2, 1];
+    const length = standbyShips[allshipsLength];
     const row = e.target.dataset.row;
     const col = e.target.dataset.col;
     if (
@@ -66,8 +68,10 @@ const Game = (() => {
     ) {
       human.gameboard.placeShip(length, [row, col], 'horizontal');
     }
-    console.log(human.gameboard.allShips);
     UI.render(human);
+    if (human.gameboard.allShips.length > 5) {
+      UI.disableBoardEvent(human, false);
+    }
   };
 
   const displayHoverEffect = (e) => {
