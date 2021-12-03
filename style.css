@@ -137,6 +137,12 @@ button {
   border-radius: 5px;
 }
 
+input[type='checkbox'] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
 .winner {
   position: absolute;
 }
@@ -155,4 +161,11 @@ button {
 
 .can-not-drop {
   background-color: rgba(255, 0, 0, 0.452);
+}
+
+.green-hovered-tile {
+  background-color: green;
+}
+.red-hovered-tile {
+  background-color: red;
 }
