@@ -76,6 +76,20 @@ const UI = (() => {
     updateRemainingShip(player);
   };
 
+  const disableUI = (id, hasFade) => {
+    const board = document.querySelector(`#${id}`);
+    board.classList.add('no-event');
+    if (hasFade) {
+      board.classList.add('fade');
+    }
+  };
+
+  const enableUI = (id) => {
+    const board = document.querySelector(`#${id}`);
+    board.classList.remove('no-event');
+    board.classList.remove('fade');
+  };
+
   const createBoard = () => {
     const playerGrid = document.getElementById('human-grid');
     const computerGrid = document.getElementById('computer-grid');
@@ -93,6 +107,7 @@ const UI = (() => {
         computerGrid.appendChild(computerDiv);
       }
     }
+    disableUI('computer-grid', true);
   };
 
   const declareWinner = (player) => {
@@ -104,29 +119,13 @@ const UI = (() => {
     }
   };
 
-  const disableBoardEvent = (player, hasFade) => {
-    const playerName = player.name;
-    const board = document.querySelector(`#${playerName}-grid`);
-    board.classList.add('no-event');
-    if (hasFade) {
-      board.classList.toggle('fade');
-    }
-  };
-
-  const enableBoardEvent = (player) => {
-    const playerName = player.name;
-    const board = document.querySelector(`#${playerName}-grid`);
-    board.classList.remove('no-event');
-    board.classList.remove('fade');
-  };
-
   const restartBoard = () => {
     document.getElementById('human-grid').textContent = '';
     document.getElementById('computer-grid').textContent = '';
     const shipNum = document.querySelectorAll('.ship-num');
     shipNum.forEach((element) => {
       const div = element;
-      div.textContent = 'Ships Remaining: 6';
+      div.textContent = 'Ships Remaining: 0';
     });
     createBoard();
   };
@@ -135,9 +134,9 @@ const UI = (() => {
     render,
     declareWinner,
     updateRemainingShip,
-    disableBoardEvent,
+    disableUI,
     restartBoard,
-    enableBoardEvent,
+    enableUI,
   };
 })();
 

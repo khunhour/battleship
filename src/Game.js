@@ -9,24 +9,27 @@ const Game = (() => {
   const human = new Player('human');
   const computer = new Player('computer');
   const startGame = () => {
-    // PlacingShips.placeShipRandomly(human);
+    if (human.gameboard.allShips.length < 6) return;
     PlacingShips.placeShipRandomly(computer);
-    // UI.render(human);
+    UI.enableUI('computer-grid');
     UI.render(computer);
+    UI.disableUI('button-group', true);
+    UI.disableUI('start', true);
   };
 
   const restartGame = () => {
     UI.restartBoard();
-    UI.enableBoardEvent(human);
-    UI.enableBoardEvent(computer);
+    UI.enableUI('human-grid');
     human.restartPlayer();
     computer.restartPlayer();
+    UI.enableUI('button-group');
+    UI.enableUI('start');
   };
 
   const randomizeShip = () => {
     restartGame();
     PlacingShips.placeShipRandomly(human);
-    UI.disableBoardEvent(human, false);
+    UI.disableUI('human-grid', false);
     UI.render(human);
   };
 
@@ -34,8 +37,8 @@ const Game = (() => {
     const allShipsSunk = enemy.gameboard.checkAllShipsAreSunk();
     if (allShipsSunk) {
       UI.declareWinner(player);
-      UI.disableBoardEvent(player, true);
-      UI.disableBoardEvent(enemy, true);
+      UI.disableUI(`${player.name}-grid`, true);
+      UI.disableUI(`${enemy.name}-grid`, true);
     }
   };
 
@@ -62,21 +65,14 @@ const Game = (() => {
     const direction = PlacingShips.getShipDirection();
     const row = e.target.dataset.row;
     const col = e.target.dataset.col;
-    if (
-      PlacingShips.checkplacementOutsideBoard([row, col], length, direction)
-    ) {
-      console.log('isoutofrange');
+    if (PlacingShips.checkplacementOutsideBoard([row, col], length, direction))
       return;
-    }
-    if (
-      PlacingShips.checkAlreadyHasShip(human, [row, col], length, direction)
-    ) {
+    if (PlacingShips.checkAlreadyHasShip(human, [row, col], length, direction))
       return;
-    }
     human.gameboard.placeShip(length, [row, col], direction);
     UI.render(human);
     if (human.gameboard.allShips.length > 5) {
-      UI.disableBoardEvent(human, false);
+      UI.disableUI('human-grid', false);
     }
   };
 
