@@ -1,3 +1,5 @@
+import announcementUI from './announcementUI';
+
 const UI = (() => {
   const displayRedMark = (player, row, col) => {
     if (player.name === 'computer') {
@@ -110,15 +112,6 @@ const UI = (() => {
     disableUI('computer-grid', true);
   };
 
-  const declareWinner = (player) => {
-    const announcement = document.querySelector('.announcement');
-    if (player.name === 'computer') {
-      announcement.textContent = 'You Lose!';
-    } else {
-      announcement.textContent = 'You Won!';
-    }
-  };
-
   const restartBoard = () => {
     document.getElementById('human-grid').textContent = '';
     document.getElementById('computer-grid').textContent = '';
@@ -132,7 +125,6 @@ const UI = (() => {
   return {
     createBoard,
     render,
-    declareWinner,
     updateRemainingShip,
     disableUI,
     restartBoard,

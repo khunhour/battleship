@@ -1,4 +1,5 @@
 /* eslint-disable prefer-destructuring */
+import announcementUI from './announcementUI';
 import Coordinates from './Coordinates';
 import PlacingShips from './PlacingShips';
 import UI from './UI';
@@ -15,15 +16,17 @@ const Game = (() => {
     UI.render(computer);
     UI.disableUI('button-group', true);
     UI.disableUI('start', true);
+    announcementUI.displayStartingGameMsg();
   };
 
   const restartGame = () => {
-    UI.restartBoard();
-    UI.enableUI('human-grid');
     human.restartPlayer();
     computer.restartPlayer();
+    UI.restartBoard();
+    UI.enableUI('human-grid');
     UI.enableUI('button-group');
     UI.enableUI('start');
+    announcementUI.displayWelcomeMsg();
   };
 
   const randomizeShip = () => {
@@ -36,7 +39,7 @@ const Game = (() => {
   const checkWinner = (player, enemy) => {
     const allShipsSunk = enemy.gameboard.checkAllShipsAreSunk();
     if (allShipsSunk) {
-      UI.declareWinner(player);
+      announcementUI.declareWinner(player);
       UI.disableUI(`${player.name}-grid`, true);
       UI.disableUI(`${enemy.name}-grid`, true);
     }
