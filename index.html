@@ -27,7 +27,7 @@
         <button id="restart">Restart</button>
       </div>
       <div class="board">
-        <div class="human-side" unselectable="on">
+        <div class="human-side">
           <div class="ship-num">Ships Remaining: 0</div>
           <div id="human-grid"></div>
           <div class="grid-name">Your Board</div>
@@ -35,12 +35,14 @@
             <button id="randomize">Randomize</button>
             <button id="reset">Reset</button>
             <input type="checkbox" id="rotate" />
-            <label for="rotate">Rotate</label>
+            <div id="label-container">
+              <label for="rotate">Rotate</label>
+            </div>
           </div>
         </div>
-        <div class="computer-side" unselectable="on">
+        <div class="computer-side">
           <div class="ship-num">Ships Remaining: 0</div>
-          <div id="computer-grid" unselectable="on"></div>
+          <div id="computer-grid"></div>
           <div class="grid-name">Computer's Board</div>
         </div>
       </div>
