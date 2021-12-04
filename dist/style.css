@@ -9,7 +9,7 @@
   --ship4: #08e7dc;
   --ship5: #64b5f6;
 }
-
+/* noselect is on to prevent dragging */
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -106,6 +106,7 @@ main {
 .tile:hover {
   cursor: pointer;
 }
+
 .red-mark {
   background-image: url('./images/red-mark.png');
   background-color: rgba(243, 152, 92, 0.507) !important;
@@ -123,7 +124,7 @@ main {
   padding: 8px;
   pointer-events: none;
 }
-
+/* ship colors css */
 .ship-mark0 {
   background-color: var(--ship0);
 }
@@ -154,6 +155,22 @@ label {
   border-radius: 5px;
   width: 100px;
 }
+button:hover,
+label:hover {
+  cursor: pointer;
+  opacity: 80%;
+}
+
+button:active {
+  transform: scale(0.9);
+}
+#label-container {
+  display: inline-block;
+}
+#label-container:active {
+  transform: scale(0.9);
+}
+/* button colors */
 #randomize {
   background-image: linear-gradient(45deg, rgb(3, 250, 209), rgb(6, 198, 247));
 }
@@ -175,31 +192,22 @@ input[type='checkbox'] {
   left: 0;
   opacity: 0;
 }
-.winner {
-  position: absolute;
-}
-
+/* diable and enable UI css */
 .no-event {
   pointer-events: none;
 }
 .fade {
   opacity: 50%;
 }
-
-.can-drop {
-  background-color: rgba(0, 128, 0, 0.329);
-}
-
-.can-not-drop {
-  background-color: rgba(255, 0, 0, 0.452);
-}
-
+/* hover effect when placing ships manually */
 .green-hovered-tile {
   background-color: rgb(10, 240, 10);
 }
 .red-hovered-tile {
   background-color: red;
 }
+
+/* css for footer area */
 footer {
   display: flex;
   justify-content: center;
