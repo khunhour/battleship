@@ -36,27 +36,29 @@ const Game = (() => {
     UI.render(human);
   };
 
-  const checkWinner = (player, enemy) => {
+  const checkHasWinner = (player, enemy) => {
     const allShipsSunk = enemy.gameboard.checkAllShipsAreSunk();
     if (allShipsSunk) {
       announcementUI.declareWinner(player);
       UI.disableUI(`${player.name}-grid`, true);
       UI.disableUI(`${enemy.name}-grid`, true);
+      return true;
     }
+    return false;
   };
 
   const startAttackRound = (row, col) => {
     // human's turn to attack
     human.attack(computer, row, col);
     UI.render(computer);
-    checkWinner(human, computer);
+    if (checkHasWinner(human, computer)) return;
 
     // computer's turn to attack
     const coord = Coordinates.getCoord(computer, human);
     Coordinates.calculateNextBestCoord(computer, human, coord);
     computer.attack(human, coord[0], coord[1]);
     UI.render(human);
-    checkWinner(computer, human);
+    checkHasWinner(computer, human);
   };
 
   const placeShipManually = (e) => {
