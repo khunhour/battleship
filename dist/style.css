@@ -22,15 +22,16 @@
 
 html,
 body {
-  font-family: 'Special Elite';
   margin: 0;
   padding: 0;
-  width: 100%;
+  font-family: 'Special Elite';
   height: 100%;
 }
 body {
   display: flex;
   flex-direction: column;
+  background-size: cover;
+  flex-shrink: 1;
 }
 
 header {
@@ -53,15 +54,14 @@ header img {
 main {
   display: flex;
   flex-direction: column;
-  flex: 1;
 }
 .announcement {
   align-self: center;
   text-align: center;
-  padding: 18px;
+  padding: 1rem;
   background-color: #e4e4e4;
   border-radius: 5px;
-  min-width: 500px !important;
+  width: 500px;
   border-bottom: solid 2px black;
   white-space: pre-wrap;
 }
@@ -211,6 +211,7 @@ input[type='checkbox'] {
 footer {
   display: flex;
   justify-content: center;
+  margin-top: auto;
 }
 footer div {
   padding: 3px;
@@ -218,4 +219,18 @@ footer div {
 footer img {
   width: 1.2rem;
   height: 1.2rem;
+}
+
+/* responsive design css */
+@media (max-width: 415px) {
+  :root {
+    font-size: 15px;
+  }
+  .announcement {
+    width: 300px;
+  }
+  .board {
+    flex-direction: column;
+    margin-bottom: 18px;
+  }
 }
