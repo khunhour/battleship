@@ -1,5 +1,5 @@
 :root {
-  font-size: 18px;
+  font-size: 17px;
   font-family: 'Special Elite', cursive;
   font-family: 'Roboto', sans-serif;
   --ship0: #2196f3;
@@ -32,8 +32,8 @@ header {
   font-size: 2rem;
   font-weight: 900;
   text-align: center;
-  padding: 1rem;
-  margin-bottom: 0.5rem;
+  padding: 0.8rem;
+  margin-bottom: 0rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,15 +53,23 @@ main {
   text-align: center;
   padding: 18px;
   background-color: #e4e4e4;
-  margin-bottom: 20px;
   border-radius: 5px;
   min-width: 500px !important;
   border-bottom: solid 2px black;
+  white-space: pre-wrap;
+}
+
+#start-restart {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 10px;
 }
 
 .board {
   display: flex;
-  justify-content: space-around !important ;
+  justify-content: center !important ;
+  gap: 3rem;
 }
 
 .human-side,
