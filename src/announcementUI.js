@@ -3,7 +3,7 @@ const announcementUI = (() => {
 
   const displayWelcomeMsg = () => {
     announcement.textContent =
-      'Welcome to BattleShip. Place 6 ships on your board.';
+      'Welcome to BattleShip. \r\n Place 6 ships on your board. \r\n Then press "Start" when you\'re done.';
   };
   const declareWinner = (player) => {
     if (player.name === 'computer') {
