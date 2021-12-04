@@ -180,7 +180,7 @@ input[type='checkbox'] {
 }
 
 .green-hovered-tile {
-  background-color: green;
+  background-color: rgb(10, 240, 10);
 }
 .red-hovered-tile {
   background-color: red;
