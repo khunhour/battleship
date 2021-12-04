@@ -224,7 +224,7 @@ footer img {
 /* responsive design css */
 @media (max-width: 415px) {
   :root {
-    font-size: 15px;
+    font-size: 16px;
   }
   .announcement {
     width: 300px;
