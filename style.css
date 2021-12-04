@@ -25,6 +25,12 @@ body {
   font-family: 'Special Elite';
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -47,6 +53,7 @@ header img {
 main {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 .announcement {
   align-self: center;
@@ -192,4 +199,15 @@ input[type='checkbox'] {
 }
 .red-hovered-tile {
   background-color: red;
+}
+footer {
+  display: flex;
+  justify-content: center;
+}
+footer div {
+  padding: 3px;
+}
+footer img {
+  width: 1.2rem;
+  height: 1.2rem;
 }
