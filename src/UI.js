@@ -1,5 +1,3 @@
-import announcementUI from './announcementUI';
-
 const UI = (() => {
   const displayRedMark = (player, row, col) => {
     if (player.name === 'computer') {
