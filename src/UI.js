@@ -1,45 +1,26 @@
 const UI = (() => {
   const displayRedMark = (player, row, col) => {
-    if (player.name === 'computer') {
-      const tile = document.querySelector(
-        `#computer-grid [data-row="${row}"][data-col="${col}"]`
-      );
-      tile.classList.add('red-mark');
-    } else {
-      const tile = document.querySelector(
-        `#human-grid [data-row="${row}"][data-col="${col}"]`
-      );
-      tile.classList.add('red-mark');
-    }
+    const playerName = player.name;
+    const tile = document.querySelector(
+      `#${playerName}-grid [data-row="${row}"][data-col="${col}"]`
+    );
+    tile.classList.add('red-mark');
   };
 
   const displayMissedShot = (player, row, col) => {
-    if (player.name === 'computer') {
-      const tile = document.querySelector(
-        `#computer-grid [data-row="${row}"][data-col="${col}"]`
-      );
-      tile.classList.add('missed-mark');
-    } else {
-      const tile = document.querySelector(
-        `#human-grid [data-row="${row}"][data-col="${col}"]`
-      );
-      tile.classList.add('missed-mark');
-    }
+    const playerName = player.name;
+    const tile = document.querySelector(
+      `#${playerName}-grid [data-row="${row}"][data-col="${col}"]`
+    );
+    tile.classList.add('missed-mark');
   };
 
   const displayPlayerShips = (player, row, col, ship) => {
-    // remove computer here
-    if (player.name === 'computer') {
-      const tile = document.querySelector(
-        `#computer-grid [data-row="${row}"][data-col="${col}"]`
-      );
-      tile.classList.add('ship-mark');
-    } else {
-      const tile = document.querySelector(
-        `#human-grid [data-row="${row}"][data-col="${col}"]`
-      );
-      tile.classList.add(`ship-mark${ship}`);
-    }
+    const playerName = player.name;
+    const tile = document.querySelector(
+      `#${playerName}-grid [data-row="${row}"][data-col="${col}"]`
+    );
+    tile.classList.add(`ship-mark${ship}`);
   };
 
   const updateRemainingShip = (player) => {
@@ -50,6 +31,7 @@ const UI = (() => {
     playerside.textContent = `Ships Remaining: ${remainingShips.length}`;
   };
 
+  // render UI update on gamesboards
   const render = (player) => {
     // render when a ship is shot or missed shot
     for (let i = 0; i < 10; i++) {
@@ -69,13 +51,11 @@ const UI = (() => {
         if (ship !== '' && player.name === 'human') {
           displayPlayerShips(player, i, j, ship);
         }
-        // if (player.name === 'human') {
-        // }
       }
     }
     updateRemainingShip(player);
   };
-
+  // disable any pointer event of the according UI with or without fade effect
   const disableUI = (id, hasFade) => {
     const board = document.querySelector(`#${id}`);
     board.classList.add('no-event');
@@ -84,12 +64,14 @@ const UI = (() => {
     }
   };
 
+  // enable all pointer events of according UI
   const enableUI = (id) => {
     const board = document.querySelector(`#${id}`);
     board.classList.remove('no-event');
     board.classList.remove('fade');
   };
 
+  // create initial empty gameboard
   const createBoard = () => {
     const playerGrid = document.getElementById('human-grid');
     const computerGrid = document.getElementById('computer-grid');
@@ -120,6 +102,7 @@ const UI = (() => {
     });
     createBoard();
   };
+
   return {
     createBoard,
     render,
