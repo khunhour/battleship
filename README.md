@@ -20,3 +20,4 @@
 
 - possibly add a drag and drop feature
 - player testing
+- make AI smarter
