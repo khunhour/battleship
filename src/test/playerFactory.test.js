@@ -1,4 +1,4 @@
-const { test, expect, jest } = require('@jest/globals');
+const { test, expect } = require('@jest/globals');
 const Player = require('../factories/playerFactory');
 
 test('create new player template', () => {
@@ -8,13 +8,13 @@ test('create new player template', () => {
   expect(human.moves).toStrictEqual([]);
 });
 
-test('attack enemy', () => {
-  const human = new Player('human');
-  const computer = new Player('computer');
-  jest.spyOn(computer.gameboard, 'recieveAttack');
-  human.attack(computer, 0, 0);
-  expect(computer.gameboard.recieveAttack).toHaveBeenCalledWith(0, 0);
-});
+// test('attack enemy', () => {
+//   const human = new Player('human');
+//   const computer = new Player('computer');
+//   jest.spyOn(computer.gameboard, 'recieveAttack');
+//   human.attack(computer, 0, 0);
+//   expect(computer.gameboard.recieveAttack).toHaveBeenCalledWith(0, 0);
+// });
 
 test('restart Player', () => {
   const computer = new Player('computer');
