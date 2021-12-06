@@ -2,13 +2,12 @@ const Ship = require('./shipFactory');
 
 class Gameboard {
   constructor() {
-    this.board = this.createGrid();
+    this.board = [];
     this.allShips = [];
     this.createGrid();
   }
 
   createGrid() {
-    this.board = [];
     for (let row = 0; row < 10; row++) {
       this.board[row] = [];
       for (let col = 0; col < 10; col++) {
@@ -23,7 +22,7 @@ class Gameboard {
   placeShip(length, coord, direction) {
     let row = coord[0];
     let col = coord[1];
-    const shipId = this.getShipId();
+    const shipId = this.allShips.length;
     const battleship = new Ship(length, shipId);
     this.allShips.push(battleship);
     for (let i = 0; i < length; i++) {
@@ -37,7 +36,6 @@ class Gameboard {
   }
 
   recieveAttack(row, col) {
-    // console.log(this.board[row][col].isShot);
     if (this.board[row][col].isShot) return;
 
     // record missed shot as isShot
@@ -46,29 +44,14 @@ class Gameboard {
     if (this.checkHasShip(row, col)) {
       const attackedShip = this.getAttackedShip(row, col);
       attackedShip.hit([row, col]);
-      attackedShip.checkSunkState();
+      attackedShip.updateSunkState();
     }
   }
 
-  checkShipPlacementValidity(length, rowValue, colValue, direction) {
-    let row = rowValue;
-    let col = colValue;
-    for (let i = 0; i < length; i++) {
-      if (this.board[row][col].hasShip !== '') {
-        return false;
-      }
-      if (direction === 'vertical') {
-        row++;
-      } else if (direction === 'horizontal') {
-        col++;
-      }
-    }
-    return true;
-  }
-
-  getShipId() {
-    // set shipId to the index inside of allShips
-    return this.allShips.length;
+  checkAllShipsAreSunk() {
+    const allSunkShips = this.allShips.filter((ship) => ship.isSunk);
+    if (allSunkShips.length === this.allShips.length) return true;
+    return false;
   }
 
   checkHasShip(row, col) {
@@ -78,12 +61,6 @@ class Gameboard {
   getAttackedShip(row, col) {
     const attackedShipId = Number(this.board[row][col].hasShip);
     return this.allShips[attackedShipId];
-  }
-
-  checkAllShipsAreSunk() {
-    const allSunkShips = this.allShips.filter((ship) => ship.isSunk);
-    if (allSunkShips.length === this.allShips.length) return true;
-    return false;
   }
 }
 

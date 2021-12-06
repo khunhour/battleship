@@ -127,17 +127,6 @@ const PlacingShips = (() => {
     });
   };
 
-  // const placeShipManually = (e) => {
-  //   const AllShipsLength = [5, 4, 3, 2, 2, 1];
-  //   AllShipsLength.forEach((length) => {
-  //     const direction = getShipDirection(e);
-
-  //     const coord = getValidPlacement(player, length, randomDirection);
-  //     player.gameboard.placeShip(length, coord, randomDirection);
-  //   });
-  //   console.log(e.target);
-  // };
-
   const placeShipRandomly = (player) => {
     const AllShipsLength = [5, 4, 3, 2, 2, 1];
     AllShipsLength.forEach((length) => {

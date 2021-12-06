@@ -11,7 +11,7 @@ class Ship {
     this.hits.push(coord);
   }
 
-  checkSunkState() {
+  updateSunkState() {
     if (this.length === this.hits.length) {
       this.isSunk = true;
     }
