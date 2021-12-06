@@ -4,14 +4,21 @@ import PlacingShips from './PlacingShips';
 
 const Event = (() => {
   const startTileEvent = () => {
-    const computerTiles = document.querySelectorAll('#computer-grid .tile');
-    computerTiles.forEach((tile) => {
-      tile.addEventListener('click', (e) => {
-        const row = Number(e.target.dataset.row);
-        const col = Number(e.target.dataset.col);
-        Game.startAttackRound(row, col);
-      });
+    const computerGrid = document.querySelector('#computer-grid');
+    computerGrid.addEventListener('click', (e) => {
+      const row = Number(e.target.dataset.row);
+      const col = Number(e.target.dataset.col);
+      Game.startAttackRound(row, col);
     });
+
+    // const computerTiles = document.querySelectorAll('#computer-grid .tile');
+    // computerTiles.forEach((tile) => {
+    //   tile.addEventListener('click', (e) => {
+    //     const row = Number(e.target.dataset.row);
+    //     const col = Number(e.target.dataset.col);
+    //     Game.startAttackRound(row, col);
+    //   });
+    // });
   };
 
   const startPlaceShipsEvent = () => {
@@ -25,23 +32,21 @@ const Event = (() => {
     const startBtn = document.getElementById('start');
     startBtn.addEventListener('click', () => {
       Game.startGame();
-      startTileEvent();
     });
 
     const restartBtn = document.getElementById('restart');
     restartBtn.addEventListener('click', () => {
       Game.restartGame();
-      startTileEvent();
     });
 
-    const randomize = document.getElementById('randomize');
-    randomize.addEventListener('click', Game.randomizeShip);
+    const randomizeBtn = document.getElementById('randomize');
+    randomizeBtn.addEventListener('click', Game.randomizeShip);
 
-    const reset = document.getElementById('reset');
-    reset.addEventListener('click', Game.restartGame);
+    const resetBtn = document.getElementById('reset');
+    resetBtn.addEventListener('click', Game.restartGame);
   };
 
-  return { startButtonEvent, startPlaceShipsEvent };
+  return { startButtonEvent, startPlaceShipsEvent, startTileEvent };
 })();
 
 export default Event;

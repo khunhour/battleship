@@ -6,3 +6,4 @@ UI.createBoard();
 announcementUI.displayWelcomeMsg();
 Event.startButtonEvent();
 Event.startPlaceShipsEvent();
+Event.startTileEvent();

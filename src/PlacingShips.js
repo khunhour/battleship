@@ -33,7 +33,6 @@ const PlacingShips = (() => {
         [row + 1, col + 1],
         [row + 1, col - 1],
       ].filter((element) => !isOutOfRange(element));
-      console.log(surroundingCoord);
       // loop through to check if the surrounding coord has ships
       for (let j = 0; j < surroundingCoord.length; j++) {
         const x = surroundingCoord[j][0];
@@ -71,6 +70,7 @@ const PlacingShips = (() => {
     }
     return [row, col];
   };
+
   const getShipDirection = () => {
     if (document.querySelector('#rotate:checked') === null) {
       return 'vertical';

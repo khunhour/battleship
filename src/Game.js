@@ -62,7 +62,6 @@ const Game = (() => {
   };
 
   const placeShipManually = (e) => {
-    console.log('clicked');
     const allshipsLength = human.gameboard.allShips.length;
 
     const standbyShips = [5, 4, 3, 2, 2, 1];
