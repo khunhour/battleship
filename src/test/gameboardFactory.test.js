@@ -37,30 +37,24 @@ test('placing ships horizontally', () => {
   expect(gameboard.board[3][8].hasShip).toBe('');
 });
 
-test('if placement is not valid then nothing will happen', () => {
-  gameboard.placeShip(5, [8, 4], 'horizontal');
-  expect(gameboard.board[8][4].hasShip).toBe('');
-  expect(gameboard.board[9][4].hasShip).toBe('');
-});
-
 // check valid attack not on the same coord
 test('recieved attack and record shot', () => {
-  gameboard.recieveAttack([1, 8]);
+  gameboard.recieveAttack(1, 8);
   expect(gameboard.board[1][8].isShot).toBe(true);
 });
 
 test('recieved attack where the ship is', () => {
   gameboard.placeShip(2, [3, 3], 'horizontal');
-  gameboard.recieveAttack([3, 3]);
+  gameboard.recieveAttack(3, 3);
   expect(gameboard.allShips[0].hits.length).not.toBe(0);
 });
 
 test('recieved attack and ship is sunk', () => {
   gameboard.placeShip(2, [3, 3], 'horizontal');
   gameboard.placeShip(2, [8, 8], 'vertical');
-  gameboard.recieveAttack([3, 3]);
-  gameboard.recieveAttack([3, 4]);
-  gameboard.recieveAttack([8, 8]);
+  gameboard.recieveAttack(3, 3);
+  gameboard.recieveAttack(3, 4);
+  gameboard.recieveAttack(8, 8);
   expect(gameboard.allShips[0].isSunk).toBe(true);
   expect(gameboard.allShips[1].isSunk).toBe(false);
 });
@@ -68,9 +62,9 @@ test('recieved attack and ship is sunk', () => {
 test('check all ships has sunk', () => {
   gameboard.placeShip(1, [0, 0], 'horizontal');
   gameboard.placeShip(2, [4, 0], 'horizontal');
-
-  gameboard.recieveAttack([0, 0]);
-  gameboard.recieveAttack([4, 0]);
-  gameboard.recieveAttack([5, 0]);
-  expect(gameboard.checkAllshipsAreSunk()).toBe(true);
+  gameboard.recieveAttack(0, 0);
+  gameboard.recieveAttack(4, 0);
+  gameboard.recieveAttack(4, 1);
+  console.log(gameboard.board);
+  expect(gameboard.checkAllShipsAreSunk()).toBe(true);
 });

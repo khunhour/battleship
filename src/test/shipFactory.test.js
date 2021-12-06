@@ -1,11 +1,10 @@
 const { test, expect } = require('@jest/globals');
 const Ship = require('../factories/shipFactory');
 
-test('new ship template', () => {
+test('create new ship template', () => {
   const summer = new Ship(2, 0);
   expect(summer.shipId).toBe(0);
   expect(summer.length).toBe(2);
-  expect(summer.isSunk).toBeFalsy();
   expect(summer.hits).toStrictEqual([]);
   expect(summer.isSunk).toBe(false);
 });
