@@ -65,6 +65,5 @@ test('check all ships has sunk', () => {
   gameboard.recieveAttack(0, 0);
   gameboard.recieveAttack(4, 0);
   gameboard.recieveAttack(4, 1);
-  console.log(gameboard.board);
   expect(gameboard.checkAllShipsAreSunk()).toBe(true);
 });

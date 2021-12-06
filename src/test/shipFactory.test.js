@@ -25,22 +25,21 @@ test('hit a ship with location', () => {
   expect(ship.hits).toContain(15);
   expect(ship.hits).toContain(0);
 });
-// ships length can never be over 10
-// ships can no longer be hit after sunk
+
 test('ship is not yet sunk', () => {
   const ship = new Ship(3, 0);
   ship.hit(9);
   ship.hit(8);
-  ship.checkSunkState();
+  ship.updateSunkState();
   expect(ship.isSunk).toBeFalsy();
 });
 
 test('ship is sunk', () => {
   const ship = new Ship(2, 0);
   ship.hit(9);
-  ship.checkSunkState();
+  ship.updateSunkState();
   expect(ship.isSunk).toBe(false);
   ship.hit(8);
-  ship.checkSunkState();
+  ship.updateSunkState();
   expect(ship.isSunk).toBe(true);
 });
