@@ -8,7 +8,6 @@ const Coordinates = (() => {
   };
 
   const getRandomCoord = (player) => {
-    console.log('getRandomCoord');
     let randomNum = `0${Math.floor(Math.random() * 100)}`;
     randomNum = randomNum.slice(-2);
     const coord = randomNum.split('').map(Number);
@@ -33,10 +32,7 @@ const Coordinates = (() => {
     // array.slice to create a copy
     possibleMoves.slice().forEach((move) => {
       // remove possible coords that are not within the board range
-      console.log(move);
-      console.log('forEach');
       if (move[0] < 0 || move[0] > 9 || move[1] < 0 || move[1] > 9) {
-        console.log('minus outside range');
         const index = possibleMoves.findIndex(
           (element) => JSON.stringify(element) === JSON.stringify(move)
         );
@@ -44,7 +40,6 @@ const Coordinates = (() => {
       }
       // remove possible coords that are already played
       if (isArrayInArray(player.moves, move)) {
-        console.log('already played');
         const index = possibleMoves.findIndex(
           (element) => JSON.stringify(element) === JSON.stringify(move)
         );
