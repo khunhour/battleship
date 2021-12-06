@@ -1,4 +1,3 @@
-const { test, expect } = require('@jest/globals');
 const Ship = require('../factories/shipFactory');
 
 test('create new ship template', () => {

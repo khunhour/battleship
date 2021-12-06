@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@jest/globals": "^27.3.1",
-    "D": "^1.0.0"
+    "D": "^1.0.0",
+    "eslint-plugin-jest": "^25.3.0"
   }
 }
